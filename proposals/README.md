@@ -26,9 +26,12 @@ This folder holds the AI UGC education collaboration materials for
 
 ## Quick summary / 一句话总结
 
-> J&Y 跑 **RM19.9 引流课**的流量 + 出**本地讲师与营销团队** → 培养 **KOC** →
-> 输送给合作方订单 **和** J&Y 自己的商家客户（+ 数字 IP 咨询）。**训练 → 供给 → 咨询**，闭环变现。
+> **「宣传换资源，只走分成」**：J&Y 向对方要**免费试课名额** → 素人边学边产出 UGC 帮课程**裂变** →
+> 更多人报正课（**正课分成，比例待谈**）→ J&Y 团队上免费正课、成为**导师（分成）**继续宣传 →
+> 素人变 **KOC** 供给对方订单 **和** J&Y 商家（+ 数字 IP 咨询）。**不另收服务费。**
 >
-> J&Y runs the **RM19.9 trial-course** traffic + supplies the **local trainer & marketing team** →
-> produces **KOCs** → feeds them into the partner's orders **and** J&Y's own merchant clients
-> (+ digital-IP consulting). **Train → supply → consult** — a closed monetization loop.
+> **"Promotion for access, revenue share only":** J&Y asks for **free trial seats** → grassroots
+> creators learn while producing UGC that makes the course go **viral** → more full-course sign-ups
+> (**rev-share, % TBD**) → J&Y team takes the free full course, becomes **trainers (rev-share)** and
+> keeps promoting → grassroots become **KOCs** feeding the partner's orders **and** J&Y merchants
+> (+ digital-IP consulting). **No separate service fee.**

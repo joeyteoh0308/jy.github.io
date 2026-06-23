@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI UGC 合作提案 | J & Y Agency × Partner</title>
+<style>
+  :root{
+    --red:#ff2442; --red-dark:#d81c36; --ink:#1d1d1f; --muted:#6b6b70;
+    --line:#ececef; --bg:#f6f6f8; --card:#ffffff; --soft:#fff5f6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Hiragino Sans GB",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.7; font-size:16px;
+  }
+  a{color:var(--red-dark);}
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px 80px;}
+
+  header.top{
+    background:linear-gradient(135deg,#1d1d1f 0%,#33141b 60%,var(--red-dark) 100%);
+    color:#fff; padding:46px 20px 40px; text-align:center;
+  }
+  header.top .brand{font-size:13px; letter-spacing:3px; text-transform:uppercase; opacity:.85;}
+  header.top h1{margin:10px 0 6px; font-size:30px; line-height:1.3;}
+  header.top .tag{font-style:italic; opacity:.8; margin:0;}
+  header.top .pair{margin-top:18px; font-size:15px; opacity:.95;}
+  header.top .pair b{color:#ffd2da;}
+
+  .toolbar{
+    position:sticky; top:0; z-index:20; background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+    display:flex; gap:8px; justify-content:center; align-items:center; padding:10px;
+  }
+  .toolbar button{
+    border:1px solid var(--line); background:#fff; color:var(--ink);
+    padding:8px 16px; border-radius:999px; cursor:pointer; font-size:14px; font-weight:600; transition:.15s;
+  }
+  .toolbar button:hover{border-color:var(--red);}
+  .toolbar button.active{background:var(--red); border-color:var(--red); color:#fff;}
+  .toolbar .print{margin-left:6px; color:var(--muted);}
+
+  .note{
+    background:var(--soft); border:1px solid #ffd9df; color:#8a2b39;
+    border-radius:12px; padding:12px 16px; font-size:13.5px; margin:24px 0;
+  }
+  section.block{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:26px 28px; margin:20px 0; box-shadow:0 1px 2px rgba(0,0,0,.03);
+  }
+  h2.sec{font-size:21px; margin:0 0 6px; display:flex; align-items:center; gap:10px;}
+  h2.sec .num{
+    flex:none; width:30px; height:30px; border-radius:8px; background:var(--red);
+    color:#fff; font-size:15px; display:inline-flex; align-items:center; justify-content:center;
+  }
+  ul,ol{padding-left:22px;} li{margin:6px 0;}
+
+  table{width:100%; border-collapse:collapse; margin:6px 0; font-size:14.5px;}
+  th,td{border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+  th{background:#fafafa; font-weight:700;}
+  tbody tr:nth-child(even){background:#fcfcfd;}
+
+  .flow{margin:8px 0;}
+  .step{background:#fff; border:1px solid var(--line); border-left:4px solid var(--red);
+    border-radius:10px; padding:12px 16px; margin:8px 0; font-size:14.5px;}
+  .step b.n{color:var(--red); margin-right:6px;}
+  .arrow{text-align:center; color:var(--red); font-size:20px; line-height:1; margin:2px 0;}
+  .branch{display:flex; gap:12px;}
+  .branch .step{flex:1; border-left-color:#1d1d1f;}
+  .loopline{text-align:center; font-weight:700; color:var(--ink);
+    background:var(--soft); border:1px dashed var(--red); border-radius:10px; padding:10px; margin:8px 0; font-size:14px;}
+
+  .streams{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:10px 0;}
+  .stream{background:var(--soft); border:1px solid #ffd9df; border-radius:12px; padding:14px 16px;}
+  .stream h4{margin:0 0 4px; font-size:15px;}
+  .stream small{color:var(--muted);}
+  .stream.cash{background:#fff7ed; border-color:#fcd9a8;}
+  .ask{background:#0e2a1f0d; border:1px solid #b9e3cf; border-radius:12px; padding:14px 18px; margin-top:14px;}
+  .ask b{color:#0a7a4b;}
+
+  .phase td:first-child{font-weight:700; white-space:nowrap;}
+  .recommend{display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:700;
+    padding:2px 8px; border-radius:999px; vertical-align:middle; margin-left:6px;}
+  .tag-tbd{display:inline-block; background:#444; color:#fff; font-size:11px; font-weight:700;
+    padding:2px 8px; border-radius:999px; vertical-align:middle; margin-left:6px;}
+
+  footer.foot{text-align:center; color:var(--muted); padding:30px 20px; font-size:14px;
+    border-top:1px solid var(--line); margin-top:30px;}
+  footer.foot .tag{font-style:italic; color:var(--red-dark); margin-top:8px;}
+
+  body.lang-en .zh{display:none;}
+  body.lang-zh .en{display:none;}
+
+  @media(max-width:640px){
+    .streams{grid-template-columns:1fr;}
+    .branch{flex-direction:column;}
+    header.top h1{font-size:24px;}
+    section.block{padding:20px;}
+  }
+  @media print{
+    .toolbar{display:none;}
+    body{background:#fff; font-size:12px;}
+    body.lang-en .zh,body.lang-zh .en{display:revert;}
+    section.block{break-inside:avoid; box-shadow:none;}
+    header.top{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body class="lang-zh">
+
+<header class="top">
+  <div class="brand">J &amp; Y Agency</div>
+  <h1>AI UGC 教育合作提案<br><span style="font-size:18px;font-weight:500;opacity:.9">AI UGC Education Collaboration Proposal</span></h1>
+  <p class="tag">Your Brand. Your Story.</p>
+  <p class="pair"><b>J &amp; Y Agency</b> （马来西亚 · 槟城） &nbsp;✕&nbsp; <b>[合作方 / Partner Name]</b> （中国）</p>
+</header>
+
+<div class="toolbar">
+  <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+  <button id="btn-en" onclick="setLang('en')">English</button>
+  <button class="print" onclick="window.print()">🖨 打印 / Print PDF</button>
+</div>
+
+<div class="wrap">
+
+  <div class="note">
+    <span class="zh">提示：合作方名称、试课名额数量为<b>占位</b>；<b>正课分成比例待双方协商</b>，正式洽谈时再填。</span>
+    <span class="en">Note: partner name and trial-seat quota are <b>placeholders</b>; the <b>full-course split is to be negotiated</b>.</span>
+  </div>
+
+  <!-- 1. Summary -->
+  <section class="block">
+    <h2 class="sec"><span class="num">1</span><span class="zh">合作概要</span><span class="en">Executive Summary</span></h2>
+    <div class="zh">
+      <p>贵司是中国领先的 <b>AI UGC 培训机构</b>，市场占有率约 <b>60%</b>，拥有成熟的<b>「从 0 到变现」</b>课程体系，并已手握大量广告 / 内容需求。贵司正进军马来西亚，目标人群为<b>马来西亚华人</b>。</p>
+      <p><b>J &amp; Y Agency</b> 是槟城本地的 <b>AI 驱动 KOC 营销机构</b>（小红书、内容创作、数字 IP），拥有自研 <b>KOC Builder AI</b> 系统、本地华人受众、营销渠道，及一批<b>需要内容的商家客户</b>。</p>
+      <p><b>合作逻辑很简单——「宣传换资源，只走分成」：</b>J&amp;Y 用自有渠道 + <b>素人裂变</b>持续帮贵司宣传；作为回报，贵司提供<b>免费试课名额</b>、把<b>正课开放给 J&amp;Y 团队</b>、后期让我们当<b>导师</b>。双方<b>唯一的钱是正课分成</b>，不另收服务费。</p>
+    </div>
+    <div class="en">
+      <p>You are a leading <b>AI UGC training company</b> in China (~<b>60%</b> market share) with a proven <b>"0 → monetization"</b> curriculum and a large pipeline of advertiser/content demand. You are entering <b>Malaysia</b>, targeting the <b>Malaysian-Chinese audience</b>.</p>
+      <p><b>J &amp; Y Agency</b> is a Penang-based <b>AI-driven KOC marketing agency</b> (XHS, content, digital IP) with a proprietary <b>KOC Builder AI</b> system, a local Chinese audience, marketing channels, and a base of <b>merchant clients who need content</b>.</p>
+      <p><b>Simple logic — "promotion for access, revenue share only":</b> J&amp;Y promotes you continuously via our channels + <b>grassroots (素人) viral marketing</b>; in return you give <b>free trial seats</b>, open the <b>full course to the J&amp;Y team</b>, and later let us serve as <b>trainers</b>. The <b>only money is the full-course revenue share</b> — no separate service fee.</p>
+    </div>
+  </section>
+
+  <!-- 2. Market -->
+  <section class="block">
+    <h2 class="sec"><span class="num">2</span><span class="zh">市场机会</span><span class="en">Market Opportunity</span></h2>
+    <div class="zh">
+      <ul>
+        <li><b>庞大华人市场：</b>马来西亚约 600–700 万华人，普遍使用中文，对小红书、抖音、微信接受度高。</li>
+        <li><b>小红书 / 短视频高速增长：</b>本地华人圈内容消费旺盛，AI UGC 技能需求正在爆发。</li>
+        <li><b>真实变现需求：</b>大量本地中小企业、个人品牌、甚至政府单位需要内容与 KOC，却缺乏供给。</li>
+        <li><b>为什么需要本地伙伴：</b>招生信任、本地导师、本地支付与社群、商家对接、文化本地化——都需要 J&amp;Y。</li>
+      </ul>
+    </div>
+    <div class="en">
+      <ul>
+        <li><b>Large Chinese community:</b> ~6–7M Malaysian Chinese, Mandarin-speaking, high adoption of XHS / Douyin / WeChat.</li>
+        <li><b>XHS / short-video growth:</b> heavy local content consumption; demand for AI UGC skills is surging.</li>
+        <li><b>Real monetization demand:</b> many local SMEs, personal brands, even government bodies need content &amp; KOCs but supply is scarce.</li>
+        <li><b>Why a local partner is essential:</b> recruitment trust, local trainer, payment &amp; community, merchant matching, localization — all require J&amp;Y.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. Why J&Y -->
+  <section class="block">
+    <h2 class="sec"><span class="num">3</span><span class="zh">为什么选择 J &amp; Y</span><span class="en">Why J &amp; Y Agency</span></h2>
+    <table>
+      <thead><tr>
+        <th><span class="zh">我们拥有</span><span class="en">What we bring</span></th>
+        <th><span class="zh">对合作的价值</span><span class="en">Value to the partnership</span></th>
+      </tr></thead>
+      <tbody class="zh">
+        <tr><td>本地华人受众 + 小红书账号矩阵</td><td>低成本、高信任地推广课程</td></tr>
+        <tr><td>AI 驱动的营销 / 内容能力</td><td>持续帮贵司宣传，并发动<b>素人裂变</b></td></tr>
+        <tr><td>培训与交付能力</td><td>后期可担任<b>本地导师</b>，本地化交付</td></tr>
+        <tr><td>自研 KOC Builder AI 系统</td><td>加速学员从 0 到出片、到变现</td></tr>
+        <tr><td><b>现成的商家 / 中小企业客户群</b></td><td>学员毕业后<b>有真实订单可接</b>，闭环变现</td></tr>
+        <tr><td>数字 IP 咨询能力</td><td>为商家提供增值服务，延长价值链</td></tr>
+      </tbody>
+      <tbody class="en">
+        <tr><td>Local Chinese audience + XHS account network</td><td>Low-cost, high-trust course promotion</td></tr>
+        <tr><td>AI-driven marketing &amp; content capability</td><td>Continuous promotion + <b>grassroots viral marketing</b></td></tr>
+        <tr><td>Training &amp; delivery capability</td><td>Can serve as the <b>local trainer</b> later</td></tr>
+        <tr><td>Proprietary KOC Builder AI system</td><td>Speeds students from zero → publishing → earning</td></tr>
+        <tr><td><b>Existing merchant/SME client base</b></td><td>Graduates have <b>real orders to take</b> — closes the loop</td></tr>
+        <tr><td>Digital IP consulting</td><td>Adds upsell value for merchants, extends the value chain</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4. Flywheel -->
+  <section class="block">
+    <h2 class="sec"><span class="num">4</span><span class="zh">合作飞轮（核心）</span><span class="en">The Collaboration Flywheel</span></h2>
+    <p class="zh" style="margin-top:0;color:var(--muted)">不是「帮你打一次广告」，而是靠素人裂变、自己越转越快的循环：</p>
+    <p class="en" style="margin-top:0;color:var(--muted)">Not "one ad campaign" — a loop that spins faster on its own through grassroots viral marketing:</p>
+    <div class="flow">
+      <div class="step"><b class="n">①</b><span class="zh">贵司给一定数量「免费试课名额」给 J&amp;Y（给素人）</span><span class="en">You give J&amp;Y a number of FREE trial seats (for grassroots creators / 素人)</span></div>
+      <div class="arrow">▼</div>
+      <div class="step"><b class="n">②</b><span class="zh">素人边学边产出 UGC，同时帮课程做宣传（裂变）</span><span class="en">They learn AND produce UGC that promotes the course (viral 裂变)</span></div>
+      <div class="arrow">▼</div>
+      <div class="step"><b class="n">③</b><span class="zh">课程免费曝光 → 更多人报名（引流课 → 正课，正课走分成）</span><span class="en">Free exposure → more sign-ups (trial → full course; full course = revenue share)</span></div>
+      <div class="arrow">▼</div>
+      <div class="step"><b class="n">④</b><span class="zh">J&amp;Y 团队上「免费正课」→ 成为认证导师（分成）→ 继续宣传</span><span class="en">J&amp;Y team takes the FREE full course → becomes certified trainers (rev-share) → keeps promoting</span></div>
+      <div class="arrow">▼</div>
+      <div class="branch">
+        <div class="step"><b class="n">⑤</b><span class="zh">素人 / 学员变成 KOC → 输送到贵司订单需求</span><span class="en">Grassroots / students become KOCs → fed into YOUR orders</span></div>
+        <div class="step"><b class="n">⑥</b><span class="zh">输送到 J&amp;Y 商家客户 + 数字 IP 咨询（J&amp;Y 自有）</span><span class="en">Fed into J&amp;Y merchant clients + digital-IP consulting (J&amp;Y-owned)</span></div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="loopline">
+        <span class="zh">⑦ 学员真正「变现」→ 口碑扩散 → 更多人报名 → 回到 ①</span>
+        <span class="en">⑦ Students genuinely monetize → word of mouth → more sign-ups → back to ①</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Roles -->
+  <section class="block">
+    <h2 class="sec"><span class="num">5</span><span class="zh">双方分工</span><span class="en">Roles &amp; Responsibilities</span></h2>
+    <table>
+      <thead><tr>
+        <th><span class="zh">模块</span><span class="en">Module</span></th>
+        <th><span class="zh">贵司 / Partner</span><span class="en">Partner</span></th>
+        <th>J &amp; Y</th>
+      </tr></thead>
+      <tbody class="zh">
+        <tr><td>品牌与权威</td><td>提供品牌、背书（用<b>贵司品牌</b>运营）</td><td>本地信任与口碑落地</td></tr>
+        <tr><td>课程内容</td><td>完整课程 + 引流课 + 认证</td><td>本地化（语言、案例、平台、支付）</td></tr>
+        <tr><td>宣传与招生</td><td>营销素材、打法 SOP、<b>免费试课名额</b></td><td>自有渠道 + <b>素人裂变</b>持续宣传（<b>不另收服务费</b>）</td></tr>
+        <tr><td>培训交付</td><td>讲师培训、开放正课</td><td>后期提供<b>本地导师</b>（以<b>分成</b>形式）</td></tr>
+        <tr><td>变现出口</td><td>广告 / 内容订单需求</td><td>对接 J&amp;Y 商家 + 数字 IP 咨询</td></tr>
+      </tbody>
+      <tbody class="en">
+        <tr><td>Brand &amp; authority</td><td>Brand &amp; endorsement (runs under <b>your brand</b>)</td><td>Local trust &amp; reputation</td></tr>
+        <tr><td>Curriculum</td><td>Full course + trial course + certification</td><td>Localization (language, cases, platforms, payment)</td></tr>
+        <tr><td>Promotion &amp; recruitment</td><td>Marketing assets, SOP, <b>free trial seats</b></td><td>Own channels + <b>grassroots viral marketing</b> (<b>no separate service fee</b>)</td></tr>
+        <tr><td>Training delivery</td><td>Train-the-Trainer, open the full course</td><td>Later provides <b>local trainer</b> (on <b>revenue-share</b>)</td></tr>
+        <tr><td>Monetization outlet</td><td>Advertiser / content order pipeline</td><td>J&amp;Y merchants + digital-IP consulting</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6. Commercial -->
+  <section class="block">
+    <h2 class="sec"><span class="num">6</span><span class="zh">商业模式</span><span class="en">Commercial Model</span></h2>
+    <p class="zh" style="margin-top:0"><b>唯一的钱 = 正课分成</b><span class="tag-tbd">比例待谈</span>，其余用<b>「宣传换资源」</b>，不另收服务费。</p>
+    <p class="en" style="margin-top:0"><b>The only money = full-course revenue share</b><span class="tag-tbd">% TBD</span>; everything else is <b>"promotion-for-access"</b>, no service fee.</p>
+
+    <p class="zh" style="margin-bottom:6px"><b>钱（唯一一种）/ 资源：</b></p>
+    <p class="en" style="margin-bottom:6px"><b>Money (only one) / access:</b></p>
+    <div class="streams">
+      <div class="stream cash"><h4>💰 <span class="zh">正课分成</span><span class="en">Full-course rev-share</span></h4>
+        <small class="zh">引流课不分成；正课我们拿合理一份、对方为大头，比例<b>待谈</b></small>
+        <small class="en">No share on trial; on the full course we take a reasonable part, Partner the larger — <b>% TBD</b></small></div>
+      <div class="stream"><h4>🎁 <span class="zh">免费试课名额</span><span class="en">Free trial seats</span></h4>
+        <small class="zh">给素人边学边宣传（裂变）= 帮对方免费获客</small>
+        <small class="en">For grassroots creators to learn &amp; promote = free customer acquisition</small></div>
+      <div class="stream"><h4>🎁 <span class="zh">正课免费给团队</span><span class="en">Free full course for team</span></h4>
+        <small class="zh">我和团队免费上课 → 能当导师、统一标准</small>
+        <small class="en">Founder &amp; team learn free → become trainers, consistent delivery</small></div>
+      <div class="stream cash"><h4>💰 <span class="zh">下游（J&amp;Y 自有）</span><span class="en">Downstream (J&amp;Y-owned)</span></h4>
+        <small class="zh">KOC 供给商家 + 数字 IP 咨询（凭自己客户赚）</small>
+        <small class="en">KOCs to merchants + digital-IP consulting (own clients)</small></div>
+    </div>
+
+    <div class="ask">
+      <div class="zh"><b>J&amp;Y 核心诉求：</b>
+        ✅ 一定数量<b>免费试课名额</b>；✅ <b>正课免费</b>给团队；✅ 后期当<b>导师</b>同样走分成；✅ J&amp;Y 可把 KOC <b>供给自有商家</b>（不影响贵司订单优先）。</div>
+      <div class="en"><b>J&amp;Y's key asks:</b>
+        ✅ a number of <b>free trial seats</b>; ✅ <b>free full course</b> for the team; ✅ <b>trainer</b> role later, also rev-share; ✅ right to deploy KOCs to <b>J&amp;Y's own merchants</b> (without compromising your order priority).</div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:0">
+      <span class="zh">其他可选（不建议先用）：加盟 / 授权费、合资 JV。建议先用「分成 + 宣传换资源」做试点。</span>
+      <span class="en">Alternatives (not first): license/franchise fee, JV. We recommend revenue share + promotion-for-access as a pilot.</span>
+    </p>
+  </section>
+
+  <!-- 7. Rollout -->
+  <section class="block">
+    <h2 class="sec"><span class="num">7</span><span class="zh">分阶段落地</span><span class="en">Phased Rollout</span></h2>
+    <table class="phase">
+      <thead><tr>
+        <th><span class="zh">阶段</span><span class="en">Phase</span></th>
+        <th><span class="zh">目标</span><span class="en">Goal</span></th>
+        <th><span class="zh">J&amp;Y 动作</span><span class="en">J&amp;Y action</span></th>
+        <th><span class="zh">指标（示例）</span><span class="en">Metric (example)</span></th>
+      </tr></thead>
+      <tbody class="zh">
+        <tr><td>① 裂变引流</td><td>用免费名额起量</td><td>免费名额给素人；素人边学边产出 UGC 宣传</td><td>X,000 名引流课报名</td></tr>
+        <tr><td>② 转化分成</td><td>流量变正课收入</td><td>引流课 → 正课转化；正课走分成</td><td>XXX 名正课付费学员</td></tr>
+        <tr><td>③ 导师 + 输送</td><td>变现闭环</td><td>团队上正课、成为导师（分成）；KOC 输送给贵司订单 + J&amp;Y 商家</td><td>XX 名 KOC 接到真实订单</td></tr>
+      </tbody>
+      <tbody class="en">
+        <tr><td>① Viral traffic</td><td>Volume via free seats</td><td>Free seats for grassroots creators; they learn while producing promo UGC</td><td>X,000 trial sign-ups</td></tr>
+        <tr><td>② Convert &amp; share</td><td>Traffic → revenue</td><td>Trial → full-course conversion; full course = rev-share</td><td>XXX paying full-course students</td></tr>
+        <tr><td>③ Trainers + supply</td><td>Close the loop</td><td>Team takes course, becomes trainers (rev-share); KOCs → your orders + J&amp;Y merchants</td><td>XX KOCs taking real orders</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 8. Needs -->
+  <section class="block">
+    <h2 class="sec"><span class="num">8</span><span class="zh">需要贵司提供</span><span class="en">What J&amp;Y Needs From You</span></h2>
+    <ol class="zh">
+      <li>一定数量的<b>免费试课名额</b>（给素人做裂变宣传）</li>
+      <li><b>正课免费开放</b>给 J&amp;Y 创办人与团队</li>
+      <li>导师认证 / Train-the-Trainer（后期 J&amp;Y 以分成形式授课）</li>
+      <li><b>正课分成比例</b>（待双方协商）</li>
+      <li>广告 / 内容订单需求对接（学员变现出口）</li>
+      <li>营销素材与打法 SOP、品牌使用授权</li>
+    </ol>
+    <ol class="en">
+      <li>A number of <b>free trial seats</b> (for grassroots viral marketing)</li>
+      <li><b>Free full-course access</b> for the J&amp;Y founder &amp; team</li>
+      <li>Trainer certification / Train-the-Trainer (J&amp;Y later teaches on rev-share)</li>
+      <li>The <b>full-course revenue-share %</b> (to be negotiated)</li>
+      <li>Advertiser / content order pipeline access</li>
+      <li>Marketing assets &amp; playbook SOP, plus brand usage rights</li>
+    </ol>
+  </section>
+
+  <!-- 9. Next steps -->
+  <section class="block">
+    <h2 class="sec"><span class="num">9</span><span class="zh">下一步</span><span class="en">Next Steps</span></h2>
+    <ol class="zh">
+      <li><b>线上会议：</b>对齐目标、免费名额数量、正课分成比例与试点范围</li>
+      <li><b>试点协议：</b>先跑第一阶段（免费名额 + 素人裂变），设 30–60 天指标</li>
+      <li><b>正式启动：</b>上线宣传、转化正课、培养导师</li>
+    </ol>
+    <ol class="en">
+      <li><b>Online call:</b> align on goals, free-seat quota, full-course split, and pilot scope</li>
+      <li><b>Pilot agreement:</b> run Phase 1 (free seats + grassroots viral marketing) with 30–60 day metrics</li>
+      <li><b>Kickoff:</b> go live on promotion, convert to the full course, build trainers</li>
+    </ol>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <strong>J &amp; Y Agency</strong> · Georgetown, Penang, Malaysia<br>
+  Email: <a href="mailto:joeyteoh0308@gmail.com">joeyteoh0308@gmail.com</a> ·
+  Tel: <a href="tel:+60177953325">+6017-795 3325</a><br>
+  WhatsApp: <a href="https://wa.link/04aszw">wa.link/04aszw</a> ·
+  XHS: <a href="https://www.xiaohongshu.com/user/profile/5e1ed11d00000000010009a2">小红书主页</a>
+  <div class="tag">Your Brand. Your Story.</div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.body.className = 'lang-' + l;
+    document.documentElement.lang = (l==='zh'?'zh':'en');
+    document.getElementById('btn-zh').classList.toggle('active', l==='zh');
+    document.getElementById('btn-en').classList.toggle('active', l==='en');
+  }
+</script>
+</body>
+</html>
